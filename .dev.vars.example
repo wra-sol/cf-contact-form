@@ -1,0 +1,14 @@
+# Google Service Account Email
+# Format: something@project-id.iam.gserviceaccount.com
+GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account@your-project.iam.gserviceaccount.com
+
+# Google Private Key
+# This is the private key from your service account JSON file
+# Format: -----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END PRIVATE KEY-----\n"
+
+# Google Sheet ID
+# You can find this in your Google Sheet URL
+# Example URL: https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7/edit
+# The ID would be: 1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7
+GOOGLE_SHEET_ID=your-sheet-id-here 
