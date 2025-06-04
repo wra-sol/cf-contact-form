@@ -1,7 +1,13 @@
 name = "newleaf"
-main = "src/index.ts"
-compatibility_date = "2024-01-01"
+main = "app/index.ts"
+compatibility_date = "2025-05-23"
 compatibility_flags = ["nodejs_compat"]
+observability.enabled = true
+
+[[kv_namespaces]]
+binding = "FORM_RESPONSES"
+id = "88b7c9b67a574f52a687a40731a77f95"
+preview_id = "945a60ebc6b84f799c882185e6c12bcb"
 
 [site]
 bucket = "./public"
@@ -11,7 +17,7 @@ port = 8787
 local_protocol = "http"
 
 [build]
-command = "npm run build"
+#command = "npm run build"
 
 [env.development]
 vars = { ENVIRONMENT = "development" } 

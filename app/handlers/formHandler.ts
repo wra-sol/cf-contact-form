@@ -4,6 +4,7 @@ import { appendToSheet } from '../services/googleSheets';
 import { validateFormData } from '../utils/validation';
 import { createSuccessResponse, createErrorResponse } from '../utils/response';
 import { ValidationError, GoogleAuthError, GoogleSheetsError } from '../utils/errors';
+import { saveResponseToKV } from '../services/kvStore';
 
 export async function handleFormSubmission(
   request: Request,
@@ -20,8 +21,11 @@ export async function handleFormSubmission(
     );
 
     // Append to Google Sheet
-    const result = await appendToSheet(env.GOOGLE_SHEET_ID, accessToken, data);
-    return createSuccessResponse(result);
+    //const result = await appendToSheet(env.GOOGLE_SHEET_ID, accessToken, data);
+
+    // Save to KV
+    await saveResponseToKV(env, data);
+    return createSuccessResponse(data);
   } catch (error) {
     console.error('Error processing submission:', error);
 
@@ -38,4 +42,4 @@ export async function handleFormSubmission(
       error instanceof Error ? error.message : String(error)
     );
   }
-} 
+}  
