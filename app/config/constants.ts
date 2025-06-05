@@ -9,9 +9,15 @@ export const FORM_VALIDATION = {
 
 export const API_ENDPOINTS = {
   SUBMIT: '/api/submit',
+  DELEGATES: '/api/delegates',
+  ANALYTICS: '/api/analytics',
+  COUNT: '/api/count',
 } as const;
 
 export const HTTP_METHODS = {
+  GET: 'GET',
   POST: 'POST',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
   OPTIONS: 'OPTIONS',
 } as const; 

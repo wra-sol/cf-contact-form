@@ -13,15 +13,54 @@ type Pages = {
   "/": {
     params: {};
   };
+  "/petition/step2": {
+    params: {};
+  };
+  "/bff/analytics": {
+    params: {};
+  };
+  "/bff/petition/step1": {
+    params: {};
+  };
+  "/bff/petition/step2": {
+    params: {};
+  };
+  "/bff/count": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/";
+    page: "/" | "/petition/step2" | "/bff/analytics" | "/bff/petition/step1" | "/bff/petition/step2" | "/bff/count";
   };
   "./routes/index.tsx": {
     id: "routes/index";
+    page: "/" | "/petition/step2";
+  };
+  "./routes/petition/step1.tsx": {
+    id: "routes/petition/step1";
     page: "/";
+  };
+  "./routes/petition/step2.tsx": {
+    id: "routes/petition/step2";
+    page: "/petition/step2";
+  };
+  "./routes/bff/analytics.tsx": {
+    id: "routes/bff/analytics";
+    page: "/bff/analytics";
+  };
+  "./routes/bff/petition/step1.tsx": {
+    id: "routes/bff/petition/step1";
+    page: "/bff/petition/step1";
+  };
+  "./routes/bff/petition/step2.tsx": {
+    id: "routes/bff/petition/step2";
+    page: "/bff/petition/step2";
+  };
+  "./routes/bff/count.tsx": {
+    id: "routes/bff/count";
+    page: "/bff/count";
   };
 };
