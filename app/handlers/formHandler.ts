@@ -1,17 +1,19 @@
-import { Env, FormData } from '../types';
+import { Env, PetitionStep1Data, PetitionStep2Data, PetitionFullData } from '../types';
 import { getGoogleAccessToken } from '../services/googleAuth';
 import { appendToSheet } from '../services/googleSheets';
-import { validateFormData } from '../utils/validation';
+import { validatePetitionFormData } from '../utils/validation';
 import { createSuccessResponse, createErrorResponse } from '../utils/response';
 import { ValidationError, GoogleAuthError, GoogleSheetsError } from '../utils/errors';
+import { saveResponseToKV } from '../services/kvStore';
 
 export async function handleFormSubmission(
   request: Request,
   env: Env
 ): Promise<Response> {
   try {
-    const data = (await request.json()) as FormData;
-    validateFormData(data);
+    const data = (await request.json()) as PetitionFullData;
+    const sessionId = data.sessionId;
+    validatePetitionFormData(data);
 
     // Get Google access token
     const accessToken = await getGoogleAccessToken(
@@ -19,9 +21,12 @@ export async function handleFormSubmission(
       env.GOOGLE_PRIVATE_KEY
     );
 
-    // Append to Google Sheet
-    const result = await appendToSheet(env.GOOGLE_SHEET_ID, accessToken, data);
-    return createSuccessResponse(result);
+    // Append to Google Sheet (optional, update as needed)
+    // await appendToSheet(env.GOOGLE_SHEET_ID, accessToken, data);
+
+    // Save to KV
+    await saveResponseToKV(env, data, sessionId);
+    return createSuccessResponse(data);
   } catch (error) {
     console.error('Error processing submission:', error);
 
@@ -38,4 +43,4 @@ export async function handleFormSubmission(
       error instanceof Error ? error.message : String(error)
     );
   }
-} 
+}  
